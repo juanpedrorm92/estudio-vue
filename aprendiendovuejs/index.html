@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vuejs</title>
+    <!--     para intarctuar con vuejs necesitamos crea una instancia 
+    -->    
+    
+</head>
+<body>
+    <!-- Creamos un elemento con el mismo id -->
+
+    <div id="app">
+        <!-- vmodel es especial para campos de entrada -->
+        <input type="text" v-model="message">
+
+        <h1>{{ message }} Vuejs</h1>
+    </div>
+
+    <div id="app-2">
+        <span v-bind:title="message">
+            Mueve el mouse sobre mi durante unos segundos para ver mi titulo enlazado dinamica 
+        </span>
+    </div>
+
+    <div id="app-3">
+
+        <span v-if="seen"> Ahora me ves</span>
+    </div>
+
+    <div id="app-4">
+        <ol>
+            <li v-for="todo in todos">
+                {{todo.text}}
+            </li>
+        </ol>
+    </div>
+
+    <div id="app-5">
+        <p>{{message}}</p>
+        <button v-on:click="reverseMessage">Mensaje invertido</button>
+    </div>
+
+    <div id="app-6">
+        <p>{{ message }}</p>
+        <input type="text" v-model="message">
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        /* Lo primero que debemos decrile vuejs , dentro de que elmento del dom va a funcionar para ello utilizamos la llave el (elmento) y le asignamos el id */
+        /* Ademmas le podemos pasar datos con la llave data, aqui podemos definir toda la informacion que queremos manipular con vuejs */
+        new Vue({
+           el: '#app',
+           data: {
+               message: "Aprendible"   
+           }
+        });
+
+        var app2 = new Vue({
+            el: '#app-2',
+            data: {
+                message: 'Usted cargo esta pagina el ' + new Date().toLocaleString()
+            }
+        });
+
+
+        var app3 = new Vue({
+            el: '#app-3',
+            data: {
+                seen: true
+            }
+        });
+
+        var app4 = new Vue({
+            el: "#app-4",
+            data: {
+                todos: [
+                    {text: 'Aprende JavaScript'},
+                    {text: 'Aprender Vue'},
+                    {text: 'Construir algo Increible'},
+
+                ]
+            }
+        });
+
+        var app5 = new Vue({
+            el: "#app-5",
+            data: {
+                message: 'Hola Vue.js'
+            },
+            methods:{
+                reverseMessage: function(){
+                    this.message = this.message.split('').reverse().join('')
+                }
+            }
+        });
+
+        var app6 = new Vue({
+            el: "#app-6",
+            data:{
+                message: 'Hola vue!'
+            }
+        });
+    </script>
+
+</body>
+</html>
